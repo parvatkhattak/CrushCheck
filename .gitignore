@@ -20,6 +20,8 @@ env/
 
 # ML model (large binary — regenerated on first run)
 backend/ml/signal_model.pkl
+backend/data/*.db
+*.db
 
 # Node / Next.js
 node_modules/

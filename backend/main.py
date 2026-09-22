@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from models.schemas import HealthResponse
-from routers import signals, reply, interpret, check
+from routers import signals, reply, interpret, check, screenshot, timeline
 
 
 # ─── Lifespan: preload model on startup ───────────────────────────────────────
@@ -53,11 +53,8 @@ app.include_router(reply.router)
 app.include_router(interpret.router)
 app.include_router(check.router)
 
-# Stage 3:
-# app.include_router(screenshot.router)
-
-# Stage 5:
-# app.include_router(timeline.router)
+app.include_router(screenshot.router)
+app.include_router(timeline.router)
 
 
 # ─── Health check ─────────────────────────────────────────────────────────────

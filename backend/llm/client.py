@@ -104,29 +104,35 @@ async def generate_json(system: str, user: str) -> dict | list:
     return _extract_json(raw)
 
 
-async def analyze_image(image_bytes: bytes, mime_type: str, prompt: str) -> dict | list:
+async def analyze_image(
+    image_bytes: bytes,
+    mime_type: str,
+    prompt: str,
+    system_prompt: str | None = None,
+) -> dict | list:
     """
-    Vision analysis via Groq (llama-3.2-11b-vision-preview for images).
-    Falls back to text-only analysis if vision model unavailable.
-    Image is never saved to disk.
+    Multimodal vision analysis via Groq using qwen/qwen3.8-27b.
+    Image is processed in-memory as base64 and never written to disk.
     """
-    vision_model = "llama-3.2-11b-vision-preview"
+    vision_model = os.getenv("GROQ_VISION_MODEL", "qwen/qwen3.8-27b")
     b64 = base64.b64encode(image_bytes).decode("utf-8")
     data_url = f"data:{mime_type};base64,{b64}"
 
     def _sync_vision():
         client = _get_client()
+        messages = []
+        if system_prompt:
+            messages.append({"role": "system", "content": system_prompt})
+        messages.append({
+            "role": "user",
+            "content": [
+                {"type": "text", "text": prompt},
+                {"type": "image_url", "image_url": {"url": data_url}},
+            ],
+        })
         completion = client.chat.completions.create(
             model=vision_model,
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": prompt},
-                        {"type": "image_url", "image_url": {"url": data_url}},
-                    ],
-                }
-            ],
+            messages=messages,
             temperature=0.3,
             max_tokens=4096,
         )
