@@ -62,9 +62,9 @@ export default function InterpretPage() {
   };
 
   return (
-    <div className="container" style={{ padding: "40px 24px 80px", maxWidth: "860px" }}>
+    <div className="container" style={{ padding: "32px 16px 80px", maxWidth: "860px" }}>
       {/* Header */}
-      <div style={{ textAlign: "center", marginBottom: "40px" }}>
+      <div style={{ textAlign: "center", marginBottom: "32px" }}>
         <span className="badge badge-warning" style={{ marginBottom: "12px" }}>
           Overthinking Cure
         </span>
@@ -184,7 +184,7 @@ export default function InterpretPage() {
           {/* Readings */}
           <div className="glass-panel" style={{ padding: "32px" }}>
             <h3 style={{ fontSize: "1.2rem", marginBottom: "20px" }}>Possible Interpretations</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "16px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "16px" }}>
               {result.readings.map((reading, i) => {
                 const style = getColorStyles(reading.color);
                 return (

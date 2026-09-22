@@ -50,9 +50,9 @@ export default function CheckPage() {
   };
 
   return (
-    <div className="container" style={{ padding: "40px 24px 80px", maxWidth: "860px" }}>
+    <div className="container" style={{ padding: "32px 16px 80px", maxWidth: "860px" }}>
       {/* Header */}
-      <div style={{ textAlign: "center", marginBottom: "40px" }}>
+      <div style={{ textAlign: "center", marginBottom: "32px" }}>
         <span className="badge badge-success" style={{ marginBottom: "12px" }}>
           Dignity &amp; Pressure Filter
         </span>
@@ -194,7 +194,7 @@ export default function CheckPage() {
           </div>
 
           {/* 4 Gauges */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "16px", marginBottom: "32px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 140px), 1fr))", gap: "14px", marginBottom: "32px" }}>
             {/* Pressure */}
             <div style={{ background: "rgba(255, 255, 255, 0.02)", border: "1px solid var(--border-subtle)", borderRadius: "var(--radius-md)", padding: "16px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", fontWeight: 600, marginBottom: "8px" }}>

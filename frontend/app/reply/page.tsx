@@ -63,9 +63,9 @@ export default function ReplyCoachPage() {
   };
 
   return (
-    <div className="container" style={{ padding: "40px 24px 80px", maxWidth: "860px" }}>
+    <div className="container" style={{ padding: "32px 16px 80px", maxWidth: "860px" }}>
       {/* Header */}
-      <div style={{ textAlign: "center", marginBottom: "40px" }}>
+      <div style={{ textAlign: "center", marginBottom: "32px" }}>
         <span className="badge badge-violet" style={{ marginBottom: "12px" }}>
           Tone-Matched AI Coach
         </span>
@@ -111,7 +111,7 @@ export default function ReplyCoachPage() {
           <label style={{ display: "block", fontSize: "0.92rem", fontWeight: 600, marginBottom: "12px" }}>
             Your Intended Vibe:
           </label>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "10px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))", gap: "10px" }}>
             {INTENTS.map((item) => {
               const Icon = item.icon;
               const isSelected = intent === item.id;

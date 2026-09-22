@@ -101,9 +101,9 @@ export default function AnalyzePage() {
   };
 
   return (
-    <div className="container" style={{ padding: "40px 24px 80px", maxWidth: "900px" }}>
+    <div className="container" style={{ padding: "32px 16px 80px", maxWidth: "900px" }}>
       {/* Header */}
-      <div style={{ textAlign: "center", marginBottom: "40px" }}>
+      <div style={{ textAlign: "center", marginBottom: "32px" }}>
         <span className="badge badge-rose" style={{ marginBottom: "12px" }}>
           Calibrated Signal Model
         </span>
@@ -114,20 +114,20 @@ export default function AnalyzePage() {
       </div>
 
       {/* Main Form */}
-      <form onSubmit={handleSubmit} className="glass-panel" style={{ padding: "36px", marginBottom: "40px" }}>
+      <form onSubmit={handleSubmit} className="glass-panel" style={{ padding: "32px 24px", marginBottom: "36px" }}>
         {/* Section 1: Communication */}
-        <div style={{ marginBottom: "36px" }}>
+        <div style={{ marginBottom: "32px" }}>
           <h3 style={{ fontSize: "1.2rem", display: "flex", alignItems: "center", gap: "8px", marginBottom: "20px", color: "var(--rose-light)" }}>
             <span>1. Texting &amp; Communication Dynamics</span>
           </h3>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))", gap: "20px" }}>
             {/* Initiation */}
             <div>
               <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, marginBottom: "8px" }}>
                 Who initiates conversations most often?
               </label>
-              <div style={{ display: "flex", gap: "8px" }}>
+              <div style={{ display: "flex", gap: "6px" }}>
                 {(["me", "both", "her"] as const).map((side) => (
                   <button
                     key={side}
@@ -235,7 +235,7 @@ export default function AnalyzePage() {
             <span>2. In-Person &amp; Real-Life Connection</span>
           </h3>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))", gap: "20px" }}>
             <div>
               <label style={{ display: "flex", justifyContent: "space-between", fontSize: "0.9rem", fontWeight: 600, marginBottom: "8px" }}>
                 <span>Times met in person</span>
@@ -481,7 +481,7 @@ export default function AnalyzePage() {
           {/* Detailed Signal Breakdown Table */}
           <div style={{ marginBottom: "32px" }}>
             <h4 style={{ fontSize: "1.1rem", marginBottom: "14px" }}>Signal Breakdown</h4>
-            <div style={{ overflowX: "auto" }}>
+            <div className="table-scroll-wrapper">
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.88rem" }}>
                 <thead>
                   <tr style={{ borderBottom: "1px solid var(--border-subtle)", textAlign: "left", color: "var(--text-dim)" }}>
@@ -543,7 +543,7 @@ export default function AnalyzePage() {
             flexWrap: "wrap",
             gap: "16px",
           }}>
-            <div style={{ flex: 1, minWidth: "260px" }}>
+            <div style={{ flex: 1, minWidth: "min(100%, 240px)" }}>
               <div style={{ fontSize: "0.95rem", fontWeight: 600, color: "var(--text-main)" }}>
                 Track this check-in over time
               </div>

@@ -50,9 +50,9 @@ export default function TimelinePage() {
   };
 
   return (
-    <div className="container" style={{ padding: "40px 24px 80px", maxWidth: "900px" }}>
+    <div className="container" style={{ padding: "32px 16px 80px", maxWidth: "900px" }}>
       {/* Header */}
-      <div style={{ textAlign: "center", marginBottom: "40px" }}>
+      <div style={{ textAlign: "center", marginBottom: "32px" }}>
         <span className="badge badge-rose" style={{ marginBottom: "12px" }}>
           Anonymous Signal Trajectory
         </span>

@@ -110,9 +110,9 @@ export default function ScreenshotPage() {
   };
 
   return (
-    <div className="container" style={{ padding: "40px 24px 80px", maxWidth: "900px" }}>
+    <div className="container" style={{ padding: "32px 16px 80px", maxWidth: "900px" }}>
       {/* Header */}
-      <div style={{ textAlign: "center", marginBottom: "40px" }}>
+      <div style={{ textAlign: "center", marginBottom: "32px" }}>
         <span className="badge badge-rose" style={{ marginBottom: "12px" }}>
           Multimodal Vision AI
         </span>
@@ -263,7 +263,7 @@ export default function ScreenshotPage() {
           {/* Metrics Row */}
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 140px), 1fr))",
             gap: "14px",
             marginBottom: "32px",
           }}>

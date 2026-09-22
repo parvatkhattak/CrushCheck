@@ -140,9 +140,15 @@ a {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 16px;
   position: relative;
   z-index: 1;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 24px;
+  }
 }
 
 /* Buttons */
@@ -300,4 +306,59 @@ textarea.input-field {
 
 .float-anim {
   animation: float 5s infinite ease-in-out;
+}
+
+/* ─── Mobile Responsiveness & Breakpoints ──────────────────────────────────── */
+
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex !important;
+  }
+
+  /* Reduce glass-panel padding on smaller screens */
+  .glass-panel {
+    padding: 20px 16px !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  /* Prevent text wrapping issues in tight spots */
+  h1 {
+    font-size: clamp(1.85rem, 7vw, 2.5rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.4rem, 5.5vw, 1.9rem) !important;
+  }
+
+  h3 {
+    font-size: clamp(1.15rem, 4.5vw, 1.4rem) !important;
+  }
+
+  /* Buttons on mobile take natural full-width in small rows */
+  .mobile-btn-block {
+    width: 100% !important;
+  }
+}
+
+/* Table scroll wrapper */
+.table-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll-wrapper table {
+  min-width: 480px;
 }
