@@ -2,6 +2,7 @@
 main.py — CrushCheck FastAPI Application Entry Point
 """
 
+import re
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
@@ -31,6 +32,23 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan,
 )
+
+# ─── Path Normalization (clean double slashes from frontend base URLs) ─────────
+
+class CleanPathMiddleware:
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] == "http":
+            path = scope.get("path", "")
+            if "//" in path:
+                cleaned = re.sub(r"/+", "/", path)
+                scope["path"] = cleaned
+                scope["raw_path"] = cleaned.encode("ascii")
+        await self.app(scope, receive, send)
+
+app.add_middleware(CleanPathMiddleware)
 
 # ─── CORS ─────────────────────────────────────────────────────────────────────
 
