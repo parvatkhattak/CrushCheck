@@ -190,3 +190,5 @@ class HealthResponse(BaseModel):
     status: str
     model_loaded: bool
     version: str = "1.0.0"
+    ollama_running: bool = False
+    ollama_model_ready: bool = False

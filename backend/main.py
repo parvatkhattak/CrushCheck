@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from models.schemas import HealthResponse
-from routers import signals
+from routers import signals, reply, interpret, check
 
 
 # ─── Lifespan: preload model on startup ───────────────────────────────────────
@@ -49,11 +49,9 @@ app.add_middleware(
 # ─── Routers ──────────────────────────────────────────────────────────────────
 
 app.include_router(signals.router)
-
-# Stage 2 routers will be added here:
-# app.include_router(reply.router)
-# app.include_router(interpret.router)
-# app.include_router(check.router)
+app.include_router(reply.router)
+app.include_router(interpret.router)
+app.include_router(check.router)
 
 # Stage 3:
 # app.include_router(screenshot.router)
@@ -66,12 +64,16 @@ app.include_router(signals.router)
 
 @app.get("/health", response_model=HealthResponse, tags=["health"])
 async def health_check() -> HealthResponse:
-    """Server health and model status check."""
+    """Server health, model status, and Ollama connectivity check."""
     from ml.scorer import MODEL_PATH
+    from llm.client import check_ollama_health
+    ollama = await check_ollama_health()
     return HealthResponse(
-        status="ok",
+        status="ok" if ollama["ollama_running"] else "degraded",
         model_loaded=MODEL_PATH.exists(),
         version="1.0.0",
+        ollama_running=ollama["ollama_running"],
+        ollama_model_ready=ollama.get("model_ready", False),
     )
 
 
